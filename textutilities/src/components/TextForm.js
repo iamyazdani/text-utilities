@@ -60,7 +60,7 @@ export default function TextForm(props) {
     }
 
     const handleDownload = () => {
-        
+
     }
 
     const handleClearText = () => {
@@ -69,10 +69,10 @@ export default function TextForm(props) {
 
     return (
     <>
-    <div className='container'>
+    <div className='container' style={{color: props.mode === 'dark'?'white':'#042743'}}>
         <h3>{props.heading}</h3>
         <div className="mb-3">
-            <textarea className="form-control" value={text} onChange={handleOnChange} id="exampleFormControlTextarea1" rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'dark'?'#042743':'white', color: props.mode === 'dark'?'white':'#042743'}} id="exampleFormControlTextarea1" rows="8"></textarea>
         </div>
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleSentenceCase}>Convert to Sentence Case</button>
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleLowerCase}>Convert to Lowercase</button>
@@ -84,12 +84,12 @@ export default function TextForm(props) {
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleDownload}>Download Text</button>
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleClearText}>Clear Text</button>
     </div>
-    <div className="container my-2">
+    <div className="container my-2" style={{color: props.mode === 'dark'?'white':'#042743'}}>
         <h3>Your Text Summary</h3>
         <p>Character Count: <b>{text.length}</b> | Word Count: <b>{text.split(" ").length}</b> | Line Count: <b></b></p>
         <p><b>{0.008 * text.split(" ").length}</b> minutes read</p>
         <h3>Preview</h3>
-        <p className='text-muted'>{text}</p>
+        <p className='text-muted'>{text.length > 0?text:'Enter something in the textbox above to preview it here...'}</p>
     </div>
     </>
     );

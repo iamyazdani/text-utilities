@@ -15,7 +15,7 @@ export default function Navbar(props) {
               <a className="nav-link active" aria-current="page" href="/">Home</a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/">About us</a>
+              <a className="nav-link" href="/">{props.aboutText}</a>
             </li>
             {/* <li className="nav-item dropdown">
               <a className="nav-link dropdown-toggle" href="/" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">Dropdown</a>
@@ -34,9 +34,9 @@ export default function Navbar(props) {
             <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
             <button className="btn btn-primary" type="submit">Search</button>
           </form> */}
-          <div class="form-check form-switch">
-            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault" />
-            <label class="form-check-label" for="flexSwitchCheckDefault">Default switch checkbox input</label>
+          <div className={`form-check form-switch text-${props.mode === 'light'?'dark':'light'}`}>
+            <input className="form-check-input" onClick={props.toggleMode} type="checkbox" id="flexSwitchCheckDefault" />
+            <label className="form-check-label" htmlFor="flexSwitchCheckDefault">Enable Dark Mode</label>
           </div>
         </div>
       </div>
@@ -45,15 +45,15 @@ export default function Navbar(props) {
 }
 
 Navbar.propTypes = {
-    title: PropTypes.string.isRequired
+    title: PropTypes.string.isRequired,
+    aboutText: PropTypes.string.isRequired
 }
 
 // Specifies the default values for props:
 Navbar.defaultProps = {
-    title: 'My Application'
+    title: 'Set title here',
+    aboutText: 'About us'
 };
 
 
 
-
-  
