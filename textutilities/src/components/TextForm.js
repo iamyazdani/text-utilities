@@ -5,7 +5,6 @@ export default function TextForm(props) {
     
     const handleOnChange = (event) => {
         setText(event.target.value);
-        // console.log("On change");
     }
 
     const handleSentenceCase = () => {
@@ -27,26 +26,38 @@ export default function TextForm(props) {
                     return sentence;
                 }
             }).join(' ');
-            return setText(sentenceCaseText);
+            setText(sentenceCaseText);
+            props.showAlert("Converted to sentence case!", "success");
         }
     }
     
     const handleLowerCase = () => {
         setText(text.toLowerCase());
+        props.showAlert("Converted to lowercase!", "success");
     }
 
     const handleUpperCase = () => {
         setText(text.toUpperCase());
+        props.showAlert("Converted to uppercase!", "success");
     }
 
     const handleCapitalizeText = () => {
-        
+        const words = text.split(' '); // Split the text into words
+        const capitalizedWords = words.map(word => {
+            if (word.length === 0) {
+                return ''; // Handle empty strings, e.g., multiple spaces
+            }
+            return word.charAt(0).toUpperCase() + word.slice(1);
+        });
+        setText(capitalizedWords.join(' ')); // Join the capitalized words back into a string
+        props.showAlert("Converted to capitalize case!", "success");
     }
-
+    
     const handleCopyText = () => {
         let text = document.getElementById("exampleFormControlTextarea1");
         text.select();
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copy to clipboard!", "success");
     }
     
     const handlePaste = () => {
@@ -57,6 +68,7 @@ export default function TextForm(props) {
     const removeExtraSpaces = () => {
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "));
+        props.showAlert("Extra spaces removed!", "success");
     }
 
     const handleDownload = () => {
@@ -65,6 +77,7 @@ export default function TextForm(props) {
 
     const handleClearText = () => {
         setText('');
+        props.showAlert("Text is cleared!", "success");
     }
 
     return (
@@ -72,7 +85,7 @@ export default function TextForm(props) {
     <div className='container' style={{color: props.mode === 'dark'?'white':'#042743'}}>
         <h3>{props.heading}</h3>
         <div className="mb-3">
-            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'dark'?'#042743':'white', color: props.mode === 'dark'?'white':'#042743'}} id="exampleFormControlTextarea1" rows="8"></textarea>
+            <textarea className="form-control" value={text} onChange={handleOnChange} style={{backgroundColor: props.mode === 'dark'?'grey':'white', color: props.mode === 'dark'?'white':'#042743'}} id="exampleFormControlTextarea1" rows="8"></textarea>
         </div>
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleSentenceCase}>Convert to Sentence Case</button>
         <button type="button" className="btn btn-outline-primary mx-1 my-1" onClick={handleLowerCase}>Convert to Lowercase</button>
