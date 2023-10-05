@@ -2,8 +2,8 @@ import React from 'react';
 import { useState } from 'react';
 import './App.css';
 import Navbar from './components/Navbar';
-import TextForm from './components/TextForm';
-import Alert from './Alert';
+import TextForm from './components/textForm';
+import Alert from './components/Alert';
 import About from './components/About';
 import {
   BrowserRouter as Router,
@@ -44,7 +44,7 @@ function App() {
       <div className="container my-3">
         <Routes>
           <Route path='/about' element={<About mode={mode} />} />
-          <Route path='/home' element={<TextForm showAlert={showAlert} mode={mode} />} />
+          <Route path='/' element={<TextForm  showAlert={showAlert} mode={mode} />} />
         </Routes>
       </div>
     </Router>

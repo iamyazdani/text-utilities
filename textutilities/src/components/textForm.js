@@ -140,6 +140,7 @@ export default function TextForm(props) {
         <h3>Preview</h3>
         <p className='text-muted'>{text.length > 0?text:'Nothing to preview!'}</p>
     </div>
+    
     </>
     );
 }
